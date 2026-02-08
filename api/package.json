@@ -1,0 +1,7 @@
+{
+  "name": "cloud-sql-website",
+  "type": "module",
+  "dependencies": {
+    "mssql": "^10.0.0"
+  }
+}
