@@ -1,20 +1,167 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Cloud SQL Website</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Your Wiki Site with Dropdown</title>
+  <style>
+    /* Basic reset */
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f9f9f9;
+      color: #333;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Navigation bar */
+    nav {
+      background: #2c3e50;
+      color: #ecf0f1;
+      padding: 12px 24px;
+      display: flex;
+      gap: 20px;
+      font-weight: 600;
+      font-size: 16px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      position: relative;
+    }
+
+    nav a, nav button {
+      color: #ecf0f1;
+      text-decoration: none;
+      cursor: pointer;
+      transition: color 0.3s ease;
+      background: none;
+      border: none;
+      font: inherit;
+      padding: 0;
+      position: relative;
+    }
+    nav a:hover, nav button:hover {
+      color: #3498db;
+    }
+
+    /* Dropdown container */
+    .dropdown {
+      position: relative;
+    }
+
+    /* Dropdown menu */
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: #34495e;
+      border-radius: 4px;
+      min-width: 180px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(10px);
+      transition: opacity 0.25s ease, transform 0.25s ease;
+      z-index: 1000;
+    }
+
+    /* Show dropdown on hover */
+    .dropdown:hover .dropdown-menu,
+    .dropdown:focus-within .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    /* Dropdown links */
+    .dropdown-menu a {
+      display: block;
+      padding: 10px 16px;
+      color: #ecf0f1;
+      text-decoration: none;
+      font-weight: 500;
+      transition: background-color 0.3s;
+    }
+    .dropdown-menu a:hover {
+      background-color: #2c3e50;
+      color: #f5d675;
+    }
+
+    /* Main content */
+    main {
+      flex-grow: 1;
+      padding: 40px 24px;
+      max-width: 900px;
+      margin: 0 auto;
+      background: white;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+      border-radius: 6px;
+      margin-top: 20px;
+    }
+
+    h1 {
+      margin-bottom: 16px;
+      color: #2c3e50;
+    }
+
+    p {
+      line-height: 1.6;
+      font-size: 18px;
+      color: #555;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+      color: #999;
+      margin-top: 40px;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      nav {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      main {
+        padding: 20px 12px;
+      }
+    }
+  </style>
 </head>
 <body>
-  <h1>Cloud SQL Website</h1>
-  <button onclick="loadData()">Test Database</button>
-  <pre id="output"></pre>
 
-  <script>
-    async function loadData() {
-      const res = await fetch('/api/dbtest');
-      const data = await res.json();
-      document.getElementById('output').textContent =
-        JSON.stringify(data, null, 2);
-    }
-  </script>
+  <nav>
+    <a href="#">Home</a>
+
+    <div class="dropdown" tabindex="0">
+      <button aria-haspopup="true" aria-expanded="false">Articles ▼</button>
+      <div class="dropdown-menu" role="menu" aria-label="Articles submenu">
+        <a href="#">School Papers</a>
+        <a href="#">Documentary</a>
+        <a href="#">News</a>
+        <a href="#">Tutorials</a>
+      </div>
+    </div>
+
+    <a href="#">Downloads</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+  </nav>
+
+  <main>
+    <h1>Welcome to Your Wiki</h1>
+    <p>This is your starting point. Use the navigation above to explore articles and downloads.</p>
+    <p>Content will be loaded dynamically from your Cloud SQL database and file storage in the future.</p>
+  </main>
+
+  <footer>
+    &copy; 2026 Your Wiki Project
+  </footer>
+
 </body>
 </html>
