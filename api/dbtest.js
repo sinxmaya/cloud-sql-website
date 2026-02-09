@@ -6,7 +6,7 @@ export default async function handler(req, res) {
       user: process.env.DB_USER,
       password: process.env.DB_PASS,
       server: process.env.DB_HOST,         // host only
-      port: parseInt(process.env.DB_PORT), // port as number
+      port: Number(process.env.DB_PORT), // port as number
       database: process.env.DB_NAME,
       options: {
         encrypt: true,                     // required for most cloud SQLs
